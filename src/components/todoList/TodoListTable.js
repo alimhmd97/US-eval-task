@@ -29,13 +29,13 @@ function TodoListTable({ todoList, setTodoList }) {
         <TableBody>
           {todoList.map((todo) => (
             <TableRow key={todo.id}>
-              <TableCell className={styles.ellipsis_text}><Tooltip value={todo.title||''}><span>{todo.title}</span></Tooltip></TableCell>
-              <TableCell className={styles.ellipsis_text}><Tooltip value={todo.description||''}><span>{todo.description}</span></Tooltip></TableCell>
-              <TableCell className={styles.ellipsis_text}><Tooltip value={formatDate(todo.created_at)}><span>{formatDate(todo.created_at)}</span></Tooltip></TableCell>
-              <TableCell className={styles.ellipsis_text}><Tooltip value={todo.finished_at?formatDate(todo.finished_at):'Not finished Yet'}><span>{todo.finished_at?formatDate(todo.finished_at):'Not finished Yet'}</span></Tooltip></TableCell>
-              <TableCell className={styles.ellipsis_text}><Tooltip value={todo.archive_at?formatDate(todo.archive_at):'Not archived Yet'}><span>{todo.archive_at?formatDate(todo.archive_at):'Not archived Yet'}</span></Tooltip></TableCell>
-              <TableCell className={styles.ellipsis_text}><Tooltip value={todo.checked ? 'Checked' : 'Not checked'}><span>{todo.checked ? 'Checked' : 'Not checked'}</span></Tooltip></TableCell>
-              <TableCell className={styles.ellipsis_text} sx={{display:'flex'}}>
+              <TableCell className={styles.ellipsis_text}><Tooltip title={todo.title||''}><span>{todo.title}</span></Tooltip></TableCell>
+              <TableCell className={styles.ellipsis_text}><Tooltip title={todo.description||''}><span>{todo.description}</span></Tooltip></TableCell>
+              <TableCell className={styles.ellipsis_text}><Tooltip title={formatDate(todo.created_at)}><span>{formatDate(todo.created_at)}</span></Tooltip></TableCell>
+              <TableCell className={styles.ellipsis_text}><Tooltip title={todo.finished_at?formatDate(todo.finished_at):'Not finished Yet'}><span>{todo.finished_at?formatDate(todo.finished_at):'Not finished Yet'}</span></Tooltip></TableCell>
+              <TableCell className={styles.ellipsis_text}><Tooltip title={todo.archive_at?formatDate(todo.archive_at):'Not archived Yet'}><span>{todo.archive_at?formatDate(todo.archive_at):'Not archived Yet'}</span></Tooltip></TableCell>
+              <TableCell className={styles.ellipsis_text}><Tooltip title={todo.checked ? 'Checked' : 'Not checked'}><span>{todo.checked ? 'Checked' : 'Not checked'}</span></Tooltip></TableCell>
+              <TableCell sx={{display:'flex'}}>
                 <EditTodoDialog 
                 todoItemToUpdate={todo} setTodoList={setTodoList}/>
                 <DeleteTodoDialog

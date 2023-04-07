@@ -18,15 +18,15 @@ export const ToggleTheme=() =>{
         display: 'flex',
         width: '100%',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'start',
         bgcolor: 'background.default',
         color: 'text.primary',
         borderRadius: 1,
-        p: 3,
+      paddingLeft:'10px'
       }}
     >
       {theme.palette.mode} mode
-      <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit" >
+      <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="primary" >
         {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>
     </Box>

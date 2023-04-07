@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-console.log(API_KEY);
 function CurrentWeather() {
   const [weather, setWeather] = useState(null);
 
@@ -24,22 +23,18 @@ function CurrentWeather() {
     });
   }, []);
 
-  const handleViewMore = () => {
-    // Navigate to page with weather for next 5 days
-    // You can use React Router or another navigation library to accomplish this
-  };
+
 
   return (
-    <Box>
+    <Box >
       {weather ? (
         <>
-          <Typography variant="h4">{weather.name}, {weather.sys.country}</Typography>
-          <Typography variant="h6">{weather.weather[0].description}</Typography>
-          <Typography variant="h1">{Math.round(weather.main.temp)}°C</Typography>
-          <Button variant="contained" onClick={handleViewMore}>View More</Button>
+          <Typography sx={{display:'inline-block'}} >{weather.name}, {weather.sys.country}</Typography>
+          <Typography sx={{display:'inline-block'}} >{weather.weather[0].description}</Typography>
+          <Typography sx={{display:'inline-block'}} >{Math.round(weather.main.temp)}°C</Typography>
         </>
       ) : (
-        <Typography variant="h4">Loading...</Typography>
+        <Typography sx={{display:'inline-block'}} >Loading...</Typography>
       )}
     </Box>
   );
