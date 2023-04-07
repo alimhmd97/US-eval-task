@@ -12,3 +12,6 @@ a {
   text-decoration: none;
   color: black;
 }
+.app_wrapper{
+  padding: 20px;
+}

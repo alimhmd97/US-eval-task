@@ -1,0 +1,8 @@
+.todo_checkbox{
+    width: 1.2;
+    height: 1.2;
+}
+.todo_checkbox_wrapper{
+    display: flex;
+    justify-content: center;
+}
