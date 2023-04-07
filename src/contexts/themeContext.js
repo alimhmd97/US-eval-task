@@ -8,11 +8,13 @@ export const ColorModeContext=createContext({
 })
 
 export const ColorModeContextProvider =({children})=>{
-    const [mode, setMode] = React.useState('dark');
+    const [mode, setMode] = React.useState(localStorage.getItem('theme')||'dark');
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        setMode((prevMode) => {
+            localStorage.setItem('theme',prevMode === 'light' ? 'dark' : 'light')
+            return prevMode === 'light' ? 'dark' : 'light'});
       },
     }),
     [],

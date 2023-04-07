@@ -54,7 +54,7 @@ function FiveDaysWeather() {
     }, []);
 
     return (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 3 }} >
             <Typography variant="h4" gutterBottom>
                 Today's Weather
             </Typography>
@@ -74,7 +74,7 @@ function FiveDaysWeather() {
             </Typography>
             <Grid container spacing={3}>
                 {dailyWeather.map((data) => (
-                    <Grid item xs={4} key={data.dt}>
+                    <Grid item xs={4} key={data.dt} color='primary'>
                         <DailyWeatherWrapper>
                             <Typography variant="subtitle1">{new Date(data.dt * 1000).toLocaleDateString('en-US', { weekday: 'long' })}</Typography>
                             <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`} alt={data.weather[0].description} />
