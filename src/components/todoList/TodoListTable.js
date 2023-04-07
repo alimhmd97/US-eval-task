@@ -3,15 +3,15 @@ import { formatDate } from '../../helpers/helpers';
 import { DeleteTodoDialog } from './DeleteTodoDialog';
 import { EditTodoDialog } from './EditTodoDialog';
 import styles from './todo.module.css';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Tooltip } from '@mui/material';
 
 function TodoListTable({ todoList, setTodoList }) {
-  const handleCheckTodoChange = (todoItem) => {
-   const updatedTodoItem={...todoItem,checked:!todoItem.checked}
-    todoList?.splice(todoList.map(elem=>elem.id).indexOf(todoItem.id), 1,updatedTodoItem)
-    setTodoList([...todoList])
-    localStorage.setItem('todoList',JSON.stringify(todoList))
-  }
+  // const handleCheckTodoChange = (todoItem) => {
+  //  const updatedTodoItem={...todoItem,checked:!todoItem.checked}
+  //   todoList?.splice(todoList.map(elem=>elem.id).indexOf(todoItem.id), 1,updatedTodoItem)
+  //   setTodoList([...todoList])
+  //   localStorage.setItem('todoList',JSON.stringify(todoList))
+  // }
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -29,14 +29,15 @@ function TodoListTable({ todoList, setTodoList }) {
         <TableBody>
           {todoList.map((todo) => (
             <TableRow key={todo.id}>
-              <TableCell>{todo.title}</TableCell>
-              <TableCell>{todo.description}</TableCell>
-              <TableCell>{formatDate(todo.created_at)}</TableCell>
-              <TableCell>{todo.finished_at||'Not finished Yet'}</TableCell>
-              <TableCell>{todo.archive_at||'Not archived Yet'}</TableCell>
-              <TableCell>{todo.checked ? 'Yes' : 'No'}</TableCell>
-              <TableCell sx={{display:'flex'}}>
-                <EditTodoDialog/>
+              <TableCell className={styles.ellipsis_text}><Tooltip value={todo.title||''}><span>{todo.title}</span></Tooltip></TableCell>
+              <TableCell className={styles.ellipsis_text}><Tooltip value={todo.description||''}><span>{todo.description}</span></Tooltip></TableCell>
+              <TableCell className={styles.ellipsis_text}><Tooltip value={formatDate(todo.created_at)}><span>{formatDate(todo.created_at)}</span></Tooltip></TableCell>
+              <TableCell className={styles.ellipsis_text}><Tooltip value={todo.finished_at?formatDate(todo.finished_at):'Not finished Yet'}><span>{todo.finished_at?formatDate(todo.finished_at):'Not finished Yet'}</span></Tooltip></TableCell>
+              <TableCell className={styles.ellipsis_text}><Tooltip value={todo.archive_at?formatDate(todo.archive_at):'Not archived Yet'}><span>{todo.archive_at?formatDate(todo.archive_at):'Not archived Yet'}</span></Tooltip></TableCell>
+              <TableCell className={styles.ellipsis_text}><Tooltip value={todo.checked ? 'Checked' : 'Not checked'}><span>{todo.checked ? 'Checked' : 'Not checked'}</span></Tooltip></TableCell>
+              <TableCell className={styles.ellipsis_text} sx={{display:'flex'}}>
+                <EditTodoDialog 
+                todoItemToUpdate={todo} setTodoList={setTodoList}/>
                 <DeleteTodoDialog
                  todoItemToBeDeletedId={todo.id} 
                 setTodoList={setTodoList}

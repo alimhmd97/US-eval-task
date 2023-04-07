@@ -24,7 +24,8 @@ export function AddTodoDialog({ todoList, setTodoList }) {
         title: '',
         description: ''
     });
-    const addTodo = () => {
+    const addTodo = (e) => {
+        e.preventDefault();
         const newTodoitem = {
             ...todoItem,
             id: todoList[todoList?.length - 1]?.id + 1,
@@ -60,7 +61,7 @@ export function AddTodoDialog({ todoList, setTodoList }) {
                             inputProps={{
                                 required: true,
                             }}
-                            value={setTodoItem.title}
+                            value={todoItem.title}
                             onChange={(e) => {
                                 setTodoItem(prev => ({ ...prev, title: e.target.value }))
                             }}
@@ -75,7 +76,7 @@ export function AddTodoDialog({ todoList, setTodoList }) {
                             inputProps={{
                                 required: true,
                             }}
-                            value={setTodoItem.description}
+                            value={todoItem.description}
                             onChange={(e) => {
                                 setTodoItem(prev => ({ ...prev, description: e.target.value }))
                             }}

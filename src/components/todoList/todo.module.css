@@ -6,3 +6,9 @@
     display: flex;
     justify-content: center;
 }
+.ellipsis_text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
